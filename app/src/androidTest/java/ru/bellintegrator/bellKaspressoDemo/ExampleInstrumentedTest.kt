@@ -1,4 +1,4 @@
-package ru.bellintegrator.myapplication4
+package ru.bellintegrator.bellKaspressoDemo
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("ru.bellintegrator.myapplication4", appContext.packageName)
+        assertEquals("ru.bellintegrator.bellKaspressoDemo", appContext.packageName)
     }
 }

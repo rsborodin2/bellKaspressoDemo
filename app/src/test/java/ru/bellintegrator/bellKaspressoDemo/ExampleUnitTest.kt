@@ -1,4 +1,4 @@
-package ru.bellintegrator.myapplication4
+package ru.bellintegrator.bellKaspressoDemo
 
 import org.junit.Test
 

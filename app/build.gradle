@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.bellintegrator.myapplication4'
+    namespace 'ru.bellintegrator.bellKaspressoDemo'
     compileSdk 34
 
     defaultConfig {
-        applicationId "ru.bellintegrator.myapplication4"
+        applicationId "ru.bellintegrator.bellKaspressoDemo"
         minSdk 30
         targetSdk 34
         versionCode 1

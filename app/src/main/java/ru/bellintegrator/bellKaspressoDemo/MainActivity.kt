@@ -1,4 +1,4 @@
-package ru.bellintegrator.myapplication4
+package ru.bellintegrator.bellKaspressoDemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
