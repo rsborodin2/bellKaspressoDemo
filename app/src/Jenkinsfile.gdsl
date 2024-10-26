@@ -21,6 +21,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh './gradlew connectedDebugAndroidTest --build-cache'
+                sh 'adb pull /sdcard/Documents/allure-results app/build'
             }
         }
     }
