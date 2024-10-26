@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
+               // sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
                 sh './gradlew connectedDebugAndroidTest --build-cache'
                 sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'
                 allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
