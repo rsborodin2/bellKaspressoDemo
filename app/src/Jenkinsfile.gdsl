@@ -19,7 +19,9 @@ pipeline {
             }
         }
         stage('Init Emulator'){
-            sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator --version'
+            steps{
+                sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator --version'
+            }
         }
         stage('Test') {
             steps {
