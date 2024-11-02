@@ -18,11 +18,20 @@ pipeline {
                 git 'https://github.com/rsborodin2/bellKaspressoDemo.git' // replace with your repo
             }
         }
+        stage('Init Emulator'){
+            steps{
+
+            }
+        }
         stage('Test') {
             steps {
                // sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
-                sh './gradlew connectedDebugAndroidTest --build-cache'
-                sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'
+                androidEmulator(avdName: 'jenkinsAndroid', deviceDefinition: '', deviceLocale: '', emulatorTool: 'android_tool', osVersion: '9', screenDensity: '320', screenResolution: 'HVGA', sdCardSize: '', targetABI: '') {
+                    // some block
+                    sh './gradlew connectedDebugAndroidTest --build-cache'
+                    sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'
+                }
+
                 allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
             }
         }
