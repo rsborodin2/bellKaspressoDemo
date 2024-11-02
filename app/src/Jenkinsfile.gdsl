@@ -18,11 +18,6 @@ pipeline {
                 git 'https://github.com/rsborodin2/bellKaspressoDemo.git' // replace with your repo
             }
         }
-        stage('Init Emulator'){
-            steps{
-
-            }
-        }
         stage('Test') {
             steps {
                // sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
