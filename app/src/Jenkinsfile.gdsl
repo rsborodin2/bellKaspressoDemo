@@ -18,17 +18,17 @@ pipeline {
                 git 'https://github.com/rsborodin2/bellKaspressoDemo.git' // replace with your repo
             }
         }
-        stage('Init Emulator'){
-            steps{
-                sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice'
-            }
-        }
         stage('Test') {
             steps {
+                parallel([
+                       a:{sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice'} ,
+                        b:{                    sh './gradlew connectedDebugAndroidTest --build-cache'
+                            sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'}
+
+                ])
                // sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
                     // some block
-                    sh './gradlew connectedDebugAndroidTest --build-cache'
-                    sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'
+
                 allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
                 sh '/usr/local/bin/adb -s emulator-5554 emu kill'
             }
