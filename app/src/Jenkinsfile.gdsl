@@ -26,7 +26,10 @@ pipeline {
                // sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
                     // some block
 
-                allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
-                sh '/usr/local/bin/adb -s emulator-5554 emu kill'
+
         }
+    stage('after'){
+        allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
+        sh '/usr/local/bin/adb -s emulator-5554 emu kill'
+    }
 }
