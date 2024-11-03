@@ -21,12 +21,13 @@ pipeline {
         stage('Test') {
             steps {
                 parallel(
-                        "a": { sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice' },
-                        "b": {
+                        "run emulator": { 
+                            sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice'
+                        },
+                        "run autotests": {
                             script {
                                 try {
-                                    //sh '/usr/local/bin/appium --version'
-                                    sleep(time: 15, unit: "SECONDS")
+                                    sh '/usr/local/bin/adb -s emulator-5554 wait-for-device'
                                     sh './gradlew connectedDebugAndroidTest --build-cache'
                                 } catch (Throwable) {
                                     currentBuild.result = "UNSTABLE"
