@@ -23,6 +23,7 @@ pipeline {
                 parallel(
                         "a": { sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice' },
                         "b": {
+                            sleep(time:15,unit:"SECONDS")
                             sh './gradlew connectedDebugAndroidTest --build-cache'
                             sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'
                         }
