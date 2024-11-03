@@ -19,7 +19,6 @@ pipeline {
             }
         }
         stage('Test') {
-            steps {
                 parallel([
                        a:{sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice'} ,
                         b:{                    sh './gradlew connectedDebugAndroidTest --build-cache'
@@ -31,7 +30,6 @@ pipeline {
 
                 allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
                 sh '/usr/local/bin/adb -s emulator-5554 emu kill'
-            }
         }
     }
 }
