@@ -11,8 +11,6 @@ After starting the Jenkins service, browse to http://localhost:8080 and follow t
 
 pipeline {
     agent any
-
-    stages {
         stage('Clone Repository') {
             steps {
                 git 'https://github.com/rsborodin2/bellKaspressoDemo.git' // replace with your repo
@@ -31,5 +29,4 @@ pipeline {
                 allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
                 sh '/usr/local/bin/adb -s emulator-5554 emu kill'
         }
-    }
 }
