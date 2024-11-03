@@ -19,12 +19,12 @@ pipeline {
             }
         }
         stage('Test') {
-                parallel([
+                parallel(
                        a:{sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice'} ,
                         b:{                    sh './gradlew connectedDebugAndroidTest --build-cache'
                             sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'}
 
-                ])
+                )
                // sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
                     // some block
         }
