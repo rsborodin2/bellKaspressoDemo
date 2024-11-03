@@ -19,14 +19,18 @@ pipeline {
             }
         }
         stage('Test') {
+            steps {
                 parallel(
-                       a:{sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice'} ,
-                        b:{                    sh './gradlew connectedDebugAndroidTest --build-cache'
-                            sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'}
+                        "a": { sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice' },
+                        "b": {
+                            sh './gradlew connectedDebugAndroidTest --build-cache'
+                            sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'
+                        }
 
                 )
-               // sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
-                    // some block
+                // sh '/usr/local/bin/adb shell rm -r /sdcard/Documents/allure-results'
+                // some block
+            }
         }
         stage("after"){
             allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
