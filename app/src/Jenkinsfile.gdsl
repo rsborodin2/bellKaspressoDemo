@@ -33,7 +33,7 @@ pipeline {
                                 }
                                 finally {
                                     sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'
-                                    allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
+                                    allure includeProperties: false, jdk: '', results: [[path: 'app/build/allure-results']]
                                     sh '/usr/local/bin/adb -s emulator-5554 emu kill'
                                 }
                             }
