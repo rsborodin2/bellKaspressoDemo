@@ -13,15 +13,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/rsborodin2/bellKaspressoDemo.git' // replace with your repo
-            }
-        }
         stage('Test') {
             steps {
                 parallel(
-                        "run emulator": { 
+                        "run emulator": {
                             sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice'
                         },
                         "run autotests": {
