@@ -23,16 +23,19 @@ pipeline {
                 parallel(
                         "a": { sh '/Users/out-borodin2-rs/Library/Android/sdk/emulator/./emulator -avd androidDevice' },
                         "b": {
-                            try {
-                                //sh '/usr/local/bin/appium --version'
-                                sleep(time:15,unit:"SECONDS")
-                                sh './gradlew connectedDebugAndroidTest --build-cache'
-                                sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'                            } catch (Throwable){
-                                currentBuild.result = "UNSTABLE"
-                            }
-                            finally {
-                                allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
-                                sh '/usr/local/bin/adb -s emulator-5554 emu kill'
+                            script {
+                                try {
+                                    //sh '/usr/local/bin/appium --version'
+                                    sleep(time: 15, unit: "SECONDS")
+                                    sh './gradlew connectedDebugAndroidTest --build-cache'
+                                    sh '/usr/local/bin/adb pull /sdcard/Documents/allure-results app/build'
+                                } catch (Throwable) {
+                                    currentBuild.result = "UNSTABLE"
+                                }
+                                finally {
+                                    allure includeProperties: false, jdk: '', results: [[path: 'build/allure-results']]
+                                    sh '/usr/local/bin/adb -s emulator-5554 emu kill'
+                                }
                             }
 
                         })
